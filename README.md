@@ -8,13 +8,16 @@ You'll find quick examples about:
 * sorting algorithms
 * recursion
 
+## Disclaimer
+The codes I'm sharing can present errors and I can't assume that they're super optimized for performances and so on...
+If you find errors and you can use Github you can fix the bugs. Thank you!
 
-##What is MIPS
+## What is MIPS
 MIPS stands for "microprocessor without interlocked pipeline stages", it' s a cheap processor born in 1985.
-It' s mostly used in Game Consols (Playstation 1 and 2, PSP, Nintendo64) and Windows CE devices (car navigators and so on).
-There are different MISP models/version. So when we talk about MIPS, we're mostly referring to the MIPS family processors.
+It' s mostly used in Game Consoles (Playstation 1 and 2, PSP, Nintendo64) and Windows CE devices (car navigators and so on).
+There are different MISP models/versions. So when we talk about MIPS, we're referring to the MIPS family processors most of the times.
 
-##What is Assembly
+## What is Assembly
 It's a programming language. Being a low-level language it's very powerful and "very close" to machine code. So it varies depending on the architecture you're developing on.
 
 |  |  |
@@ -28,3 +31,9 @@ It's a programming language. Being a low-level language it's very powerful and "
  <img src="images/donate_icon.png"
       alt="closeup"
       width="250"/></a>
+      
+      
+[xda]: <http://bit.ly/2NBnhqB>
+[insta]: <http://bit.ly/mikel_insta>
+[yt]: <http://bit.ly/mikel_YT>
+[cam]:<https://cam.tv/mik_el_tech>
