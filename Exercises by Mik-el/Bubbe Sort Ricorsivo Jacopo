@@ -1,0 +1,158 @@
+                                                     
+                                                     #ORDINAMENTO RICORSIVO#
+                                                     
+.data
+msg1:.asciiz "Inserisci 7 elementi"
+msg2:.asciiz "Inserisci arr["
+msg3:.asciiz "] : "
+msg4:.asciiz "ARRAY ORIGINALE -> "
+msg5:.asciiz "ARRAY ORDINATO ->  "
+msg_spazio:.asciiz "     "
+msg_slash:.asciiz "\n"
+.align 4
+array: .space 28
+.text
+.globl main
+main:
+              li $v0,4
+              la $a0,msg1
+              syscall
+              
+         
+         
+              la $s0,array
+              li $s1,0
+              
+              loop_inserisci:
+              beq $s1,7,continue_inserisci
+              li $v0,4
+              la $a0,msg2
+              syscall
+              
+              li $v0,1
+              move $a0,$s1
+              syscall
+       
+              li $v0,4
+              la $a0,msg3
+              syscall
+              
+              li $v0,5
+              syscall
+              sw $v0,0($s0)
+              
+              addi $s0,$s0,4
+              addi $s1,$s1,1
+              j loop_inserisci
+              
+              continue_inserisci:
+              la $v0,4
+              la $a0 ,msg4
+              syscall
+              
+              la $a0,array
+              jal stampa
+              
+                la $v0,4
+              la $a0 ,msg_slash
+              syscall
+              
+              la $a0,array
+              li $a1,7
+              jal ord_rec
+              
+              la $a0,array
+              jal stampa
+              
+              li $v0,10
+              syscall
+              
+#####################################################################              
+ord_rec:
+         
+         addi $sp,$sp,-16
+         sw $ra,0($sp)
+         sw $s0,4($sp)
+         sw $s1,8($sp)
+         sw $s2,12($sp)
+         
+         move $s0,$a1 #s0 -> valore n =7
+         
+         
+         bne $s0,1,continue_rec
+         j exit_rec
+         
+         continue_rec:
+         li $t2,0 #i
+         move $t1,$s0  
+         subi $t1,$t1,1 #n-1
+         
+      loop_rec:
+      
+            bge $t2,$t1,go_rec
+            
+            sll $s2,$t2,2
+            add $s2,$a0,$s2
+            lw $t3,0($s2) #arri
+
+            lw $t6,4($s2)# arri+1
+            
+            bgt $t3,$t6, swap
+              addi $s2,$s2,4
+              addi $t2,$t2,1
+              j loop_rec
+          
+            
+            swap:
+            
+            sw $t3,4($s2)
+            sw $t6,0($s2)
+            
+            addi $s2,$s2,4
+            j loop_rec
+         
+             go_rec:
+             subi $a1,$a1,1
+             jal ord_rec 
+         
+         
+            exit_rec:
+    
+         lw $s2,12($sp)
+                  lw $s1,8($sp)
+                    lw $s0,4($sp)
+            lw $ra,0($sp)
+         addi $sp,$sp,16
+         jr $ra
+#####################################################################              
+stampa:
+
+     
+           move $t0,$a0
+        li $t1,0
+           loop_stampa:
+                        beq $t1,7,exit_stampa
+                        lw $t3,0($t0)
+                       
+                        li $v0,1
+                        move $a0,$t3
+                        syscall
+                        
+                        li $v0,4
+                        la $a0,msg_spazio
+                        syscall
+                        
+                        addi $t0,$t0,4
+                        addi $t1,$t1,1
+                        j loop_stampa
+                        
+                        exit_stampa:
+                        jr $ra
+         
+         
+
+              
+                                          
+              
+              
+              
